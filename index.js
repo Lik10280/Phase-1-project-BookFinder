@@ -86,4 +86,37 @@ bookModal.addEventListener('mouseover', e => {
       bookModal.style.display = 'none';
     }
   });
+  // Display rating form
+rateButton.addEventListener('click', () => {
+    ratingModal.style.display = 'block';
+  });
   
+  // Close rating form
+  ratingModal.addEventListener('click', e => {
+    if (e.target.classList.contains('close') || e.target.classList.contains('modal')) {
+      ratingModal.style.display = 'none';
+    }
+  });
+  
+  // Submit rating form
+  ratingForm.addEventListener('submit', e => {
+    // Prevent form submission
+    e.preventDefault();
+    // Get rating and comment
+    const rating = ratingInput.value;
+    const comment = commentInput.value;
+    // Validate rating
+    if (rating >= 1 && rating <= 5) {
+      // Submit rating
+      console.log(`Rating: ${rating} / 5`);
+      console.log(`Comment: ${comment}`);
+    } else {
+      // Display error message
+      alert('Please enter a rating between 1 and 5.');
+    }
+    // Clear form
+    ratingInput.value = '';
+    commentInput.value = '';
+    // Close modal
+    ratingModal.style.display = 'none';
+  });
