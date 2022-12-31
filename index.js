@@ -31,3 +31,32 @@ fetch('https://www.googleapis.com/books/v1/volumes?q=harry+potter&maxResults=10'
     // Add books to page
     booksContainer.innerHTML = bookElements.join('');
   });
+  // Search for a book
+searchForm.addEventListener('submit', e => {
+    // Prevent form submission
+    e.preventDefault();
+    // Get search term
+    const searchTerm = searchTermInput.value;
+    // Fetch book from API
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=1`)
+      .then(response => response.json())
+      .then(data => {
+        // Create HTML for book
+        const bookElement = `
+          <div class="col-12">
+            <div class="card">
+              <img src="${data.items[0].volumeInfo.imageLinks.thumbnail}" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">${data.items[0].volumeInfo.title}</h5>
+                <p class="card-text">${data.items[0].volumeInfo.description}</p>
+                <button class="btn btn-primary read" data-book-id="${data.items[0].id}">Read</button>
+              </div>
+            </div>
+          </div>
+        `;
+        // Clear books container and add searched book
+        booksContainer.innerHTML = '';
+        booksContainer.innerHTML = bookElement;
+  
+      });
+  });
