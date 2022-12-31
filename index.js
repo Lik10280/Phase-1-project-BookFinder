@@ -60,3 +60,23 @@ searchForm.addEventListener('submit', e => {
   
       });
   });
+  //read a book
+booksContainer.addEventListener('click', e => {
+    // Check if read button was clicked
+    if (e.target.classList.contains('read')) {
+      // Get book ID
+      const bookId = e.target.getAttribute('data-book-id');
+      // Fetch book from API
+      fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
+        .then(response => response.json())
+        .then(data => {
+          // Set title
+          modalTitle.innerHTML = data.volumeInfo.title;
+          // Set body
+          modalBody.innerHTML = data.volumeInfo.description;
+          // Show modal
+          bookModal.style.display = 'block';
+        });
+    }
+  }
+  );
