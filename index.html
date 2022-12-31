@@ -1,80 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container mt-4">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-book-half" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M6.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L7.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L4.354 4.854a.5.5 0 1 1-.708-.708l3-3zM3.5 10.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-1z"/>
-            <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8H6a.5.5 0 0 1 0-1h1.5V5.5A.5.5 0 0 1 8.5 5z"/>
-          </svg>
-          <h1 style="color: blue;">Read a Book Today</h1>
-          <div class="row">
-            <div class="col-12">
-              <form id="search-form">
-                <div class="form-group">
-                  <label for="search-term">Search for a book:</label>
-                  <input type="text" class="form-control" id="search-term">
-                  <button type="submit" class="btn btn-primary mt-2">Search</button>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="row" id="books-container">
-            <!-- Books will be added here -->
-          </div>
+  <!-- HTML -->
+<div class="container mt-4">
+  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-book-half" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M6.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L7.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L4.354 4.854a.5.5 0 1 1-.708-.708l3-3zM3.5 10.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-1z"/>
+    <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8H6a.5.5 0 0 1 0-1h1.5V5.5A.5.5 0 0 1 8.5 5z"/>
+  </svg>
+  <h1 style="color: rgb(55, 55, 73);">Read a Book Today</h1>
+  <div class="row">
+    <div class="col-12">
+      <form id="search-form">
+        <div class="form-group">
+          <label for="search-term">Search for a book:</label>
+          <input type="text" class="form-control" id="search-term">
+          <button type="submit" class="btn btn-primary mt-2">Search</button>
+        </div>
+      </form>
     </div>
-    <!-- Modal for displaying book content -->
+  </div>
+  <div class="row" id="books-container">
+    <!-- Books will be added here -->
+  </div>
+</div>
+<!-- Modal for displaying book content -->
 <div class="modal" tabindex="-1" role="dialog" id="book-modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal-title"></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="modal-body"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="rate">Rate</button>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div id="average-rating"></div>
       </div>
     </div>
   </div>
-  <div class="modal" tabindex="-1" role="dialog" id="rating-modal">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Rate this book</h5> 
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true" >&times;</span>   
-          </button> 
-        </div>
-        <div class="modal-body">
-            <form id="rating-form">
-              <div class="form-group">
-                <label for="rating">Rating (1-5):</label>
-                <input type="number" class="form-control" id="rating" min="1" max="5">
-              </div>
-              <div class="form-group">
-                <label for="comment">Comment:</label>
-                <textarea class="form-control" id="comment"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-          <div class = "modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-       </div> 
-    </div>
-  </div>
+</div>
+<!-- Modal for displaying rating form -->
+<script src="index.js"></script>
 </body>
 </html>
