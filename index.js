@@ -80,3 +80,10 @@ booksContainer.addEventListener('click', e => {
     }
   }
   );
+  // Close modal
+bookModal.addEventListener('mouseover', e => {
+    if (e.target.classList.contains('close')) {
+      bookModal.style.display = 'none';
+    }
+  });
+  
